@@ -1,0 +1,64 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {%if messages %}
+          {%for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <i class="material-icons">close</i>
+            </button>
+            <span>
+              <b></b> {{ message }}</span>
+          </div>
+          {%endfor%}
+    {%endif %}
+  {%endwith%}
+</div>
+        
+          <!-- <table start></table> -->
+          <div class="content">
+            <p class="card-category"><a href="{{url_for('newMemberContribution',member_id=member.id)}}"><button type="button" class="btn btn-success" >ADD Contribrution</button></a></p>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                  
+                    <div class="card-header card-header-primary">
+                      <h4 class="card-title ">all contributions</h4>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead class=" text-primary">
+                            <tr  align="center">
+                              <th>ID</th>
+                              <th>Date</th>
+                              <th>Name</th>
+                              <th>Amount</th>
+                              <th align="center">Action</th>
+                            </tr> 
+                            </thead>		
+                            <tbody>
+                           {% for contrib in contributions %}
+                                <tr align="center" >
+                                <td>{{contrib.id}}</td>
+                                <td>{{contrib.created_on}}</td>
+                                <td>{{contrib.membername}}</td>
+                                <td>{{contrib.amount}}</td>
+                                <td > 
+                                  <a href="{{url_for('editMemberContribution',member_id=member.id,contributions_id=contrib.id)}}"><button type="button" class="btn btn-warning">Edit</button></a>
+                                  <a href="{{url_for('deleteMemberContribution',member_id=member.id,contributions_id=contrib.id)}}"><button type="button" class="btn btn-danger">Delete</button></a>
+                                  </td>
+                                </tr align="center">
+                              {% endfor %}
+                              </tbody>
+                          </table>
+                         
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+            <!-- <table end></table> -->
+     {% endblock%}

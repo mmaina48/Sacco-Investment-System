@@ -1,0 +1,48 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {%if messages %}
+          {%for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <i class="material-icons">close</i>
+            </button>
+            <span>
+              <b></b> {{ message }}</span>
+          </div>
+          {%endfor%}
+    {%endif %}
+  {%endwith%}
+</div>
+        
+           <!-- add Modal code-->
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Add contribution</h3>
+                
+              </div>
+              <div id="modal-cont" class="modal-body" >
+                <form  action="" method="POST" >
+                  {{ form.csrf_token() }}
+                  {{form.membername.label(class="form-control-label")}}<br>
+                  {{ form.membername(class="form-control form-control-lg",value=memberToAddcontrib.membername) }}
+                  {{form.amount.label(class="form-control-label")}}<br>
+                  <div class="prodname">
+                    {{form.amount(class="form-control form-control-lg")}}
+                  </div>
+                
+              </div>
+              <div class="modal-footer">
+                {{ form.addcontrib(class="btn btn-success") }}
+                <a href = "{{ url_for('dashboard')}}"><button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>  </a>
+                <div >
+                  
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!--end of add modal design-->
+        {% endblock %}

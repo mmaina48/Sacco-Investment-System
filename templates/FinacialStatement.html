@@ -1,0 +1,68 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container">
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {%if messages %}
+            {%for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="material-icons">close</i>
+              </button>
+              <span>
+                <b></b> {{ message }}</span>
+            </div>
+            {%endfor%}
+      {%endif %}
+    {%endwith%}
+  </div>
+    <!-- add Modal code-->
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+      <div class="modal-header">
+      </div>
+                  <div class="card">
+                    <div class="card-header card-header-primary">
+                      <h4 class="card-title">Sacco Finacial Statement</h4>
+                    </div>
+                    <div class="card-body">
+                      <div class="container">
+                                        <div class="row pb-5 p-5">
+                                            <div class="col-md-6">
+                                              <p class="font-weight-bold mb-4">Accounts </p>
+                                              <p class="mb-1"><span class="text-muted">Total Members</span> </p>
+                                              <p class="mb-1"><span class="text-muted">Total Contributions: </span></p>
+                                              <p class="mb-1"><span class="text-muted">Total Expenses: </span></p>
+                                              <p class="mb-1"><span class="text-muted">Total Savings: </span></p>
+                                            </div>
+                                            <div class="col-md-6 text-right">
+                                                <p class="font-weight-bold mb-4">Payment </p>
+                                                <p class="mb-1"><span class="text-muted"></span> {{totalmembers}}</p>
+                                                <p class="mb-1"><span class="text-muted"></span>ksh{{totalcontri}}</p>
+                                                <p class="mb-1"><span class="text-muted"></span>Ksh{{totalexp}}</p>
+                                                <p class="mb-1"><span class="text-muted"></span>ksh{{totalsave}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row-reverse bg-dark text-white p-4">
+                                            <div class="py-3 px-5 text-right">
+                                                <div class="mb-2">Target</div>
+                                                <div class="h2 font-weight-light">300K</div>
+                                            </div>
+                                            <div class="py-3 px-5 text-right">
+                                                <div class="mb-2">Savings</div>
+                                                <div class="h2 font-weight-light">ks{{totalsave}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+<!--end of add modal design-->
+</div>
+{% endblock %}

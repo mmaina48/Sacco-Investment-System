@@ -1,0 +1,48 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container">
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {%if messages %}
+            {%for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="material-icons">close</i>
+              </button>
+              <span>
+                <b></b> {{ message }}</span>
+            </div>
+            {%endfor%}
+      {%endif %}
+    {%endwith%}
+  </div>
+  
+    <!-- add Modal code-->
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Delete Expense</h3>
+        
+      </div>
+      <div id="modal-cont" class="modal-body" >
+        <h1> Are you sure you want to delete {{contrib.membername}} contribution ? </h1>
+        <form  action="" method="POST">
+         <!--MESSAGE FLASHING EXAMPLE -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<ul>
+{% for message in messages %}
+<li><strong>{{message}}</strong></li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+<button type="button" class="btn btn-danger">Delete</button>
+<a href = "{{ url_for('dashboard')}}"><button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>  </a>
+    </form>
+  </div>
+</div>
+<!--end of add modal design-->
+</div>
+{% endblock %}
